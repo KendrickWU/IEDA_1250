@@ -1,0 +1,429 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{xcolor}
+\usepackage{fancybox}
+\usepackage{amsmath}
+\usepackage{natbib, graphicx, color, tabularx, mathtools, bbold, soul, bbm, enumerate, eurosym, multirow, booktabs}
+
+\usepackage{natbib, graphicx, color, tabularx, mathtools, bbold, soul, bbm, enumerate, eurosym, multirow, booktabs}
+\usepackage{amsfonts}
+
+
+
+\usepackage[margin=0.8in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{enumitem}
+
+\begin{document}
+\begin{center}
+{\Large The Hong Kong University of Science and Technology}\\
+{\Large IEDA 1250, Summer  2026}\\
+{\Large Mid-term Exam Solution}
+\end{center}
+
+\vspace{0.5cm}
+
+\noindent
+Student ID \underline{\hspace{3cm}}
+\hfill
+Name: \underline{\hspace{6cm}}
+
+\vspace{0.8cm}
+
+\begin{center}
+\setlength{\fboxsep}{8pt}
+\doublebox{
+\begin{minipage}{0.80\textwidth}
+\begin{center}
+\textbf{Please read the following instructions carefully.}
+\end{center}
+
+\begin{itemize}
+    \item You have \textbf{90 minutes} to complete this exam. 
+    This question booklet contains 6 questions (including a bonus question) 
+    for the total of 120 points. Check to see if any pages are missing.
+
+    \item Read the instructions for individual questions carefully before answering 
+    the questions.
+\end{itemize}
+\end{minipage}
+}
+\end{center}
+
+\vspace{1cm}
+
+\begin{center}
+\renewcommand{\arraystretch}{2.0}
+\begin{tabular}{|c|c|c|}
+\hline
+Question & Points & Score \\
+\hline
+1 & 10 & \\
+\hline
+2 & 20 & \\
+\hline
+3 & 20 & \\
+\hline
+4 & 20 & \\
+\hline
+5 & 20 & \\
+\hline
+6 & 30 & \\
+\hline
+Total & 120 & \\
+\hline
+\end{tabular}
+\end{center}
+
+\newpage
+\begin{enumerate}
+
+% =========================
+% Question 1
+% =========================
+
+\item \textbf{(10 points)} Solve the following linear program (LP) graphically. Clearly identify the feasible region, the optimal solution, and the optimal objective value.
+\[
+\begin{aligned}
+\max_{x_1,x_2}\quad & x_1+\frac{1}{2}x_2\\
+\text{s.t.}\quad 
+& x_1+2x_2\leq 6,\\
+& x_1+2x_2\geq 0,\\
+& 2x_1-x_2\leq 4,\\
+& 2x_1-x_2\geq -2.
+\end{aligned}
+\]
+
+{\color{red}
+\textbf{Solution:}
+The feasible region is a diamond with vertices
+\[
+\left(-\frac{4}{5},\frac{2}{5}\right),
+\quad
+\left(\frac{2}{5},\frac{14}{5}\right),
+\quad
+\left(\frac{14}{5},\frac{8}{5}\right),
+\quad
+\left(\frac{8}{5},-\frac{4}{5}\right).
+\]
+
+Now evaluate the objective function
+\[
+z=x_1+\frac{1}{2}x_2
+\]
+at the four vertices:
+\[
+\begin{array}{c|c}
+\text{Vertex} & z=x_1+\frac{1}{2}x_2\\
+\hline
+\left(-\frac{4}{5},\frac{2}{5}\right) & -\frac{3}{5}\\[0.2cm]
+\left(\frac{8}{5},-\frac{4}{5}\right) & \frac{7}{5}\\[0.2cm]
+\left(\frac{2}{5},\frac{14}{5}\right) & \frac{9}{5}\\[0.2cm]
+\left(\frac{14}{5},\frac{8}{5}\right) & \frac{18}{5}
+\end{array}
+\]
+Therefore, the optimal solution is
+\[
+\boxed{
+x_1^*=\frac{14}{5},
+\qquad
+x_2^*=\frac{8}{5}
+}
+\]
+and the optimal objective value is
+\[
+\boxed{
+z^*=\frac{18}{5}.
+}
+\]
+}
+
+\vspace{1em}
+
+% =========================
+% Question 2
+% =========================
+
+\item \textbf{(20 points)} Consider the following primal LP:
+\[
+\begin{aligned}
+\max \quad & 2x_1+3x_2+x_3+x_4+x_5\\
+\text{s.t.}\quad
+& 2x_1+x_2+x_3+x_4\leq 3,\\
+& x_1-x_2+2x_3+x_5=7,\\
+& x_1+2x_2-x_3+3x_4+x_5\leq 6,\\
+& x_2+x_3-x_4+2x_5=7,\\
+& x_1\geq 0,\quad x_2\geq 0,
+\end{aligned}
+\]
+where $x_3,x_4,x_5$ are unrestricted in sign. Suppose that $y_1,y_2,y_3,$ and $y_4$ are the dual variables corresponding to the four constraints of the primal LP, respectively, and that the optimal dual solution is
+\[
+(y_1^*,y_2^*,y_3^*,y_4^*)=(2,-1,0,1).
+\]
+Use the complementary slackness conditions to find an optimal primal solution.
+
+{\color{red}
+\textbf{Solution:}
+Given the primal LP and the optimal dual solution
+\[
+(y_1^*,y_2^*,y_3^*,y_4^*)=(2,-1,0,1),
+\]
+we use complementary slackness to find an optimal primal solution.
+
+The dual LP is
+\[
+\begin{aligned}
+\min \quad & 3y_1+7y_2+6y_3+7y_4\\
+\text{s.t.}\quad
+& 2y_1+y_2+y_3 \geq 2,\\
+& y_1-y_2+2y_3+y_4 \geq 3,\\
+& y_1+2y_2-y_3+y_4 = 1,\\
+& y_1+3y_3-y_4 = 1,\\
+& y_2+y_3+2y_4 = 1,\\
+& y_1\geq 0,\quad y_3\geq 0,\quad y_2,y_4 \text{ free.}
+\end{aligned}
+\]
+
+Step 1: Apply complementary slackness.
+
+For primal constraints:
+\[
+y_1^*\left(3-(2x_1+x_2+x_3+x_4)\right)=0.
+\]
+Since $y_1^*=2\neq 0$, the first primal constraint must be tight:
+\[
+2x_1+x_2+x_3+x_4=3.
+\]
+Also,
+\[
+y_3^*\left(6-(x_1+2x_2-x_3+3x_4+x_5)\right)=0.
+\]
+Since $y_3^*=0$, this gives no additional equality condition.
+
+For dual constraints corresponding to $x_1$ and $x_2$:
+\[
+x_1\left(2y_1^*+y_2^*+y_3^*-2\right)=0.
+\]
+Substituting the dual solution gives
+\[
+2(2)+(-1)+0-2=1\neq 0.
+\]
+Therefore,
+\[
+x_1=0.
+\]
+Similarly,
+\[
+x_2\left(y_1^*-y_2^*+2y_3^*+y_4^*-3\right)=0.
+\]
+Substituting the dual solution gives
+\[
+2-(-1)+2(0)+1-3=1\neq 0.
+\]
+Therefore,
+\[
+x_2=0.
+\]
+
+Step 2: Substitute $x_1=0$ and $x_2=0$ into the primal constraints.
+
+The tight first primal constraint gives
+\[
+x_3+x_4=3.
+\]
+The second primal constraint gives
+\[
+2x_3+x_5=7.
+\]
+The fourth primal constraint gives
+\[
+x_3-x_4+2x_5=7.
+\]
+Therefore, we solve
+\[
+\begin{cases}
+x_3+x_4=3,\\
+2x_3+x_5=7,\\
+x_3-x_4+2x_5=7.
+\end{cases}
+\]
+Solving this system, we obtain
+\[
+x_3=2,\qquad x_4=1,\qquad x_5=3.
+\]
+Hence, an optimal primal solution is
+\[
+\boxed{
+x_1^*=0,\quad
+x_2^*=0,\quad
+x_3^*=2,\quad
+x_4^*=1,\quad
+x_5^*=3.
+}
+\]
+The optimal primal objective value is
+\[
+2x_1^*+3x_2^*+x_3^*+x_4^*+x_5^*
+=
+0+0+2+1+3
+=
+6.
+\]
+Thus,
+\[
+\boxed{z^*=6.}
+\]
+}
+
+\vspace{1em}
+
+% =========================
+% Question 3
+% =========================
+
+\item \textbf{(20 points)} A relief agency needs to ship medicine boxes from two warehouses to three clinics. Warehouse 1 has 20 boxes available, and Warehouse 2 has 30 boxes available. Clinic 1 needs 10 boxes, Clinic 2 needs 25 boxes, and Clinic 3 needs 15 boxes. Since total supply equals total demand, all boxes must be shipped. The shipping cost per box is shown below.
+\[
+\begin{array}{c|ccc}
+& \text{Clinic 1} & \text{Clinic 2} & \text{Clinic 3}\\
+\hline
+\text{Warehouse 1} & 4 & 6 & 8\\
+\text{Warehouse 2} & 5 & 4 & 3
+\end{array}
+\]
+Let $x_{ij}$ denote the number of boxes shipped from Warehouse $i$ to Clinic $j$.
+
+\begin{enumerate}
+    \item[(a)] Formulate a linear program that minimizes the total shipping cost while satisfying all clinic demands.
+
+    \item[(b)] Write down the dual linear program. Let $u_1,u_2$ be the dual variables associated with the two warehouse constraints, and let $v_1,v_2,v_3$ be the dual variables associated with the three clinic constraints.
+
+    \item[(c)] Suppose the optimal shipment plan is
+    \[
+    x_{11}^*=10,\quad x_{12}^*=10,\quad x_{13}^*=0,\quad
+    x_{21}^*=0,\quad x_{22}^*=15,\quad x_{23}^*=15.
+    \]
+    Also suppose an optimal dual solution is
+    \[
+    u_1^*=2,\quad u_2^*=0,\quad v_1^*=2,\quad v_2^*=4,\quad v_3^*=3.
+    \]
+    Explain the meaning of the dual variables intuitively. What is the economic interpretation of the dual LP and its optimal solution?
+\end{enumerate}
+
+{\color{red}
+\textbf{Solution:}
+Let $x_{ij}$ denote the number of boxes shipped from Warehouse $i$ to Clinic $j$.
+
+\textbf{(a) Primal LP formulation.}
+
+The objective is to minimize the total shipping cost:
+\[
+\min \quad
+4x_{11}+6x_{12}+8x_{13}
++5x_{21}+4x_{22}+3x_{23}.
+\]
+Subject to the warehouse supply constraints:
+\[
+x_{11}+x_{12}+x_{13}=20,
+\]
+\[
+x_{21}+x_{22}+x_{23}=30,
+\]
+and the clinic demand constraints:
+\[
+x_{11}+x_{21}=10,
+\]
+\[
+x_{12}+x_{22}=25,
+\]
+\[
+x_{13}+x_{23}=15.
+\]
+Also,
+\[
+x_{ij}\geq 0,
+\qquad
+i=1,2,\quad j=1,2,3.
+\]
+
+\textbf{(b) Dual LP formulation.}
+
+Let $u_1,u_2$ be the dual variables associated with the two warehouse constraints, and let $v_1,v_2,v_3$ be the dual variables associated with the three clinic constraints. Since all primal constraints are equality constraints, all dual variables are unrestricted in sign.
+
+The dual LP is
+\[
+\max \quad 20u_1+30u_2+10v_1+25v_2+15v_3
+\]
+subject to
+\[
+u_1+v_1\leq 4,
+\]
+\[
+u_1+v_2\leq 6,
+\]
+\[
+u_1+v_3\leq 8,
+\]
+\[
+u_2+v_1\leq 5,
+\]
+\[
+u_2+v_2\leq 4,
+\]
+\[
+u_2+v_3\leq 3,
+\]
+where
+\[
+u_1,u_2,v_1,v_2,v_3 \text{ are free.}
+\]
+
+\textbf{(c) Economic interpretation of the dual variables.}
+
+The dual variables can be interpreted as shadow prices. The variables $u_1$ and $u_2$ represent the marginal values associated with the supplies available at Warehouses 1 and 2, respectively. The variables $v_1,v_2,v_3$ represent the marginal values associated with satisfying demands at Clinics 1, 2, and 3, respectively.
+
+The dual constraint
+\[
+u_i+v_j\leq c_{ij}
+\]
+means that the combined value of one box supplied from Warehouse $i$ and delivered to Clinic $j$ cannot exceed the actual shipping cost $c_{ij}$. Therefore, the dual LP tries to assign values to warehouse supplies and clinic demands so that these values are consistent with all shipping costs.
+
+Using the given optimal dual solution
+\[
+u_1^*=2,\qquad u_2^*=0,\qquad v_1^*=2,\qquad v_2^*=4,\qquad v_3^*=3,
+\]
+the dual objective value is
+\[
+20(2)+30(0)+10(2)+25(4)+15(3)
+=
+40+0+20+100+45
+=
+205.
+\]
+The cost of the given primal shipment plan is
+\[
+4(10)+6(10)+8(0)+5(0)+4(15)+3(15)
+=
+40+60+0+0+60+45
+=
+205.
+\]
+Since the primal and dual objective values are equal, the given shipment plan and the given dual solution are both optimal.
+
+Economically, the optimal dual solution provides a system of prices that supports the optimal transportation plan. Routes with positive shipments satisfy
+\[
+u_i^*+v_j^*=c_{ij},
+\]
+while routes with zero shipments satisfy
+\[
+u_i^*+v_j^*\leq c_{ij}.
+\]
+Thus, only routes whose shipping cost is justified by the corresponding warehouse and clinic shadow prices are used in the optimal plan.
+}
+
+\end{enumerate}
+
+\end{document}
+

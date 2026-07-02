@@ -1,0 +1,140 @@
+% \documentclass{article}
+% \usepackage{graphicx} % Required for inserting images
+
+% \title{Rubric for Homework 2}
+
+% \begin{document}
+
+% \maketitle
+
+% \section{$Q_1$ Game Theory}
+% \begin{itemize}
+%     \item 1
+% \end{itemize}
+
+
+% \end{document}
+
+\documentclass[11pt, letterpaper]{article}
+
+% PACKAGES
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+
+% DOCUMENT LAYOUT
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{1em}
+\renewcommand{\labelitemi}{\textbullet}
+\renewcommand{\labelitemii}{$\circ$}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+% HELPER COMMANDS
+\newcommand{\question}[2]{
+    \subsection*{Question #1: #2}
+}
+\newcommand{\points}[1]{
+    \textbf{(#1 Points)}
+}
+
+\begin{document}
+
+% --- TITLE ---
+\begin{center}
+    {\Huge \textbf{Midterm Exam Grading Rubric}} \\
+    \vspace{0.2cm}
+    {\large IEDA 1250: Optimization for Decision Making (Summer, 2026)} \\
+    \vspace{0.5cm}
+
+    \hrule
+\end{center}
+
+% --- QUESTION 1 ---
+
+
+% --- QUESTION 1 ---
+\question{1}{Linear Programming -- Graphical Method \points{10}}
+
+\begin{itemize}
+    \item Correctly identifies that the feasible region is a diamond bounded by
+    $0 \leq x_1+2x_2 \leq 6$ and $-2 \leq 2x_1-x_2 \leq 4$. \points{2}
+
+    \item Correctly finds the four vertices of the feasible region:
+    \[
+    \left(-\frac{4}{5},\frac{2}{5}\right),
+    \left(\frac{8}{5},-\frac{4}{5}\right),
+    \left(\frac{2}{5},\frac{14}{5}\right),
+    \left(\frac{14}{5},\frac{8}{5}\right).
+    \]
+    \points{4}
+
+    \item Correctly identifies the optimal solution and optimal objective value:
+    \[
+    x_1^*=\frac{14}{5},\qquad x_2^*=\frac{8}{5},\qquad z^*=\frac{18}{5}.
+    \]
+    \points{4}
+\end{itemize}
+
+
+% --- QUESTION 2 ---
+\question{2}{Linear Programming -- Complementary Slackness \points{20}}
+
+\begin{itemize}
+    \item Correctly writes or uses the dual constraints corresponding to the primal LP,
+    taking into account that $x_3,x_4,x_5$ are unrestricted in sign. \points{4}
+
+    \item Correctly applies complementary slackness to the primal constraints and obtains
+    \[
+    2x_1+x_2+x_3+x_4=3.
+    \]
+    \points{4}
+
+    \item Correctly applies complementary slackness to the dual constraints for $x_1$
+    and $x_2$, and concludes that
+    \[
+    x_1=0,\qquad x_2=0.
+    \]
+    \points{5}
+
+    \item Correctly substitutes $x_1=0$ and $x_2=0$ into the primal constraints and forms
+    the reduced system:
+    \[
+    \begin{cases}
+    x_3+x_4=3,\\
+    2x_3+x_5=7,\\
+    x_3-x_4+2x_5=7.
+    \end{cases}
+    \]
+    \points{4}
+
+    \item Correctly solves the reduced system and obtains the optimal primal solution:
+    \[
+    x_1^*=0,\quad x_2^*=0,\quad x_3^*=2,\quad x_4^*=1,\quad x_5^*=3.
+    \]
+
+    the optimal objective value:
+    \[
+    z^*=6.
+    \]
+    
+    \points{3}
+
+    % \item Correctly reports the optimal objective value:
+    % \[
+    % z^*=6.
+    % \]
+    % \points{1}
+\end{itemize}
+
+
+
+\end{document}

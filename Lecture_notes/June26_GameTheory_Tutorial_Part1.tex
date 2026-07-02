@@ -1,0 +1,392 @@
+\documentclass[10pt,aspectratio=169]{beamer}
+
+\usetheme{Madrid}
+\usecolortheme{default}
+\usepackage{amsmath,amssymb,booktabs,array,multirow}
+
+\definecolor{hkustblue}{RGB}{0,56,116}
+\definecolor{hkustgold}{RGB}{166,124,0}
+\setbeamercolor{structure}{fg=hkustblue}
+\setbeamercolor{frametitle}{fg=white,bg=hkustblue}
+\setbeamercolor{title}{fg=white,bg=hkustblue}
+\setbeamercolor{block title}{fg=white,bg=hkustblue}
+\setbeamercolor{block body}{bg=blue!3}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+
+\newcommand{\pay}[2]{#1,\ #2}
+
+\title[Game Theory Tutorial 1/2]{Tutorial: Introduction to Game Theory (1/2)}
+\subtitle{IEDA 1250 Optimizing Decisions for Personal and Business Development}
+\author{Wu Hongfan}
+\institute{The Hong Kong University of Science and Technology}
+\date{June 26, 2026}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Today's Scope}
+\begin{block}{Tutorial 1/2}
+Today is the first game theory tutorial. We focus on intuition, payoff tables, Nash equilibrium, dominated strategies, and pure-strategy zero-sum games.
+\end{block}
+\vspace{0.2cm}
+\begin{itemize}
+  \item What is a game?
+  \item How do we read a payoff matrix?
+  \item What does Nash equilibrium mean?
+  \item How do we simplify games using dominated strategies?
+  \item How do we check for a saddle point in zero-sum games?
+\end{itemize}
+\vspace{0.2cm}
+\begin{alertblock}{Next tutorial}
+Mixed strategies, graphical method, LP formulation, and Cournot competition can be continued in Game Theory (2/2).
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{What Makes a Situation a Game?}
+\begin{block}{A game}
+A decision situation where each player's payoff depends on the actions of more than one decision maker.
+\end{block}
+\vspace{0.2cm}
+\begin{columns}[T]
+\column{0.48\textwidth}
+\textbf{Ingredients}
+\begin{itemize}
+  \item Players
+  \item Strategies
+  \item Payoffs
+  \item Information and timing
+\end{itemize}
+\column{0.48\textwidth}
+\textbf{Typical assumptions}
+\begin{itemize}
+  \item Rationality
+  \item Self-interest
+  \item Common knowledge of the game
+  \item Strategic interaction
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Why Game Theory?}
+\begin{itemize}
+  \item In LP and IP, one decision maker optimizes under constraints.
+  \item In game theory, several decision makers optimize at the same time.
+  \item My best decision depends on what you do.
+  \item Your best decision depends on what I do.
+\end{itemize}
+\vspace{0.3cm}
+\begin{block}{Examples}
+Pricing competition, auctions, political campaigns, traffic routing, and location choices by competing firms.
+\end{block}
+\end{frame}
+
+\begin{frame}{Example: Prisoner's Dilemma}
+\begin{center}
+\begin{tabular}{c c c c}
+ & & \multicolumn{2}{c}{Prisoner B}\\
+ & & Silent & Betray\\
+\cmidrule{3-4}
+\multirow{2}{*}{Prisoner A} & Silent & $\pay{-2}{-2}$ & $\pay{-10}{0}$\\
+ & Betray & $\pay{0}{-10}$ & $\pay{-5}{-5}$\\
+\end{tabular}
+\end{center}
+\vspace{0.3cm}
+\begin{itemize}
+  \item First number: payoff to Prisoner A.
+  \item Second number: payoff to Prisoner B.
+  \item Larger payoff is better, so $0>-2>-5>-10$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Best Response Thinking}
+\begin{block}{Best response}
+A strategy is a best response if it gives the highest payoff given the other player's strategy.
+\end{block}
+\vspace{0.2cm}
+\begin{itemize}
+  \item If B is silent, A compares $-2$ with $0$, so A prefers Betray.
+  \item If B betrays, A compares $-10$ with $-5$, so A prefers Betray.
+  \item By symmetry, B also prefers Betray in both cases.
+\end{itemize}
+\vspace{0.2cm}
+\begin{block}{Conclusion}
+Both players choose Betray.
+\end{block}
+\end{frame}
+
+\begin{frame}{Nash Equilibrium}
+\begin{block}{Nash equilibrium}
+A strategy profile where no single player can improve by changing only their own strategy.
+\end{block}
+\vspace{0.2cm}
+\begin{itemize}
+  \item ``I am doing my best given what you do.''
+  \item ``You are doing your best given what I do.''
+  \item It is a stability concept, not necessarily a fairness or efficiency concept.
+\end{itemize}
+\vspace{0.25cm}
+\begin{block}{Prisoner's Dilemma}
+The Nash equilibrium is $(\text{Betray}, \text{Betray})$.
+\end{block}
+\end{frame}
+
+\begin{frame}{Equilibrium Can Be Inefficient}
+\begin{center}
+\begin{tabular}{c c c c}
+ & & \multicolumn{2}{c}{Prisoner B}\\
+ & & Silent & Betray\\
+\cmidrule{3-4}
+\multirow{2}{*}{Prisoner A} & Silent & $\pay{-2}{-2}$ & $\pay{-10}{0}$\\
+ & Betray & $\pay{0}{-10}$ & $\pay{-5}{-5}$\\
+\end{tabular}
+\end{center}
+\vspace{0.25cm}
+\begin{itemize}
+  \item Both staying silent is better for both prisoners than both betraying.
+  \item But if one prisoner is silent, the other wants to betray.
+  \item So $(\text{Silent},\text{Silent})$ is good, but not stable.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Example: Beach Kiosk Game}
+\begin{itemize}
+  \item A beach is 200 meters long.
+  \item Two vendors choose locations.
+  \item Customers go to the nearest vendor.
+  \item Each vendor wants to attract as many customers as possible.
+\end{itemize}
+\vspace{0.3cm}
+\begin{block}{Question}
+If the vendors choose locations strategically, where will they locate?
+\end{block}
+\end{frame}
+
+\begin{frame}{Beach Kiosk Game: Equilibrium Intuition}
+\begin{itemize}
+  \item If the vendors split the beach evenly at 50m and 150m, each serves half the market.
+  \item But each vendor has an incentive to move closer to the center.
+  \item The stable outcome is that both vendors locate at the center.
+\end{itemize}
+\vspace{0.3cm}
+\begin{block}{Lesson}
+A Nash equilibrium can be stable for the firms but inconvenient for customers. Stability does not imply social efficiency.
+\end{block}
+\end{frame}
+
+\begin{frame}{How to Read a Payoff Matrix}
+\begin{columns}[T]
+\column{0.52\textwidth}
+\begin{center}
+\begin{tabular}{c c c c}
+ & & \multicolumn{2}{c}{Column player}\\
+ & & L & R\\
+\cmidrule{3-4}
+\multirow{2}{*}{Row player} & U & $\pay{3}{2}$ & $\pay{0}{3}$\\
+ & D & $\pay{2}{1}$ & $\pay{1}{0}$\\
+\end{tabular}
+\end{center}
+\column{0.45\textwidth}
+\begin{itemize}
+  \item Row player chooses a row.
+  \item Column player chooses a column.
+  \item First number: row player's payoff.
+  \item Second number: column player's payoff.
+\end{itemize}
+\end{columns}
+\vspace{0.25cm}
+\begin{alertblock}{Common mistake}
+Do not compare the two numbers in the same cell. Compare one player's own payoffs while holding the other player's action fixed.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{Finding Nash Equilibrium in a 2-by-2 Game}
+\begin{center}
+\begin{tabular}{c c c c}
+ & & \multicolumn{2}{c}{Player 2}\\
+ & & L & R\\
+\cmidrule{3-4}
+\multirow{2}{*}{Player 1} & U & $\pay{3}{2}$ & $\pay{0}{0}$\\
+ & D & $\pay{1}{1}$ & $\pay{2}{3}$\\
+\end{tabular}
+\end{center}
+\vspace{0.2cm}
+\begin{enumerate}
+  \item For each column, mark Player 1's best row.
+  \item For each row, mark Player 2's best column.
+  \item A cell with both players' best responses is a Nash equilibrium.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{2-by-2 Game: Solution}
+\begin{center}
+\begin{tabular}{c c c c}
+ & & \multicolumn{2}{c}{Player 2}\\
+ & & L & R\\
+\cmidrule{3-4}
+\multirow{2}{*}{Player 1} & U & $\pay{\mathbf{3}}{\mathbf{2}}$ & $\pay{0}{0}$\\
+ & D & $\pay{1}{1}$ & $\pay{\mathbf{2}}{\mathbf{3}}$\\
+\end{tabular}
+\end{center}
+\vspace{0.2cm}
+\begin{itemize}
+  \item If Player 2 chooses L, Player 1 prefers U.
+  \item If Player 2 chooses R, Player 1 prefers D.
+  \item If Player 1 chooses U, Player 2 prefers L.
+  \item If Player 1 chooses D, Player 2 prefers R.
+\end{itemize}
+\begin{block}{Result}
+There are two pure-strategy Nash equilibria: $(U,L)$ and $(D,R)$.
+\end{block}
+\end{frame}
+
+\begin{frame}{Dominated Strategies}
+\begin{block}{Dominated strategy}
+Strategy $s$ is dominated if another strategy is always at least as good and sometimes strictly better, regardless of the opponent's action.
+\end{block}
+\vspace{0.2cm}
+\begin{itemize}
+  \item For a row player who maximizes: larger row payoffs are better.
+  \item For a column player in a zero-sum payoff table for Player 1: smaller entries are better.
+  \item Eliminating dominated strategies can simplify a game before solving it.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Exercise: Eliminate Dominated Strategies}
+\begin{center}
+\begin{tabular}{c c c c c c}
+ & \multicolumn{5}{c}{Player 2}\\
+Player 1 & S1 & S2 & S3 & S4 & S5\\
+\midrule
+S1 & 3 & 2 & 0 & 3 & 0\\
+S2 & 5 & 0 & 2 & 5 & 9\\
+S3 & 7 & 3 & 9 & 5 & 9\\
+S4 & 4 & 6 & 8 & 7 & 5.5\\
+S5 & 6 & 0 & 8 & 8 & 3\\
+\end{tabular}
+\end{center}
+\vspace{0.2cm}
+\begin{block}{Task}
+Assume the entries are payoffs to Player 1. Player 1 maximizes, and Player 2 minimizes. Which rows or columns can we remove?
+\end{block}
+\end{frame}
+
+\begin{frame}{Exercise: One Elimination Order}
+\begin{enumerate}
+  \item Column S4 is dominated by Column S2.
+  \item Row S1 is dominated by Row S3.
+  \item Row S2 is dominated by Row S3.
+  \item In the reduced table, Row S5 is dominated by Row S3.
+  \item In the reduced table, Column S3 is dominated by Column S5.
+\end{enumerate}
+\vspace{0.2cm}
+\begin{block}{Takeaway}
+Dominance is a simplification method. The order may differ, but each removal must be justified using the remaining table.
+\end{block}
+\end{frame}
+
+\begin{frame}{Zero-Sum Games}
+\begin{block}{Zero-sum game}
+One player's gain is exactly the other player's loss.
+\end{block}
+\vspace{0.2cm}
+\begin{itemize}
+  \item A single payoff table is enough: entries are payoffs to Player A.
+  \item Player A wants to maximize the payoff.
+  \item Player B wants to minimize Player A's payoff.
+  \item The value of the game is the expected payoff to Player A under optimal play.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Saddle Point Test}
+\begin{center}
+\begin{tabular}{c c c c c c}
+ & B1 & B2 & B3 & B4 & Row min\\
+\midrule
+A1 & 20 & 15 & 12 & 35 & 12\\
+A2 & 25 & 14 & 8 & 10 & 8\\
+A3 & 40 & 2 & 10 & 5 & 2\\
+A4 & -5 & 4 & 11 & 0 & -5\\
+\midrule
+Col max & 40 & 15 & 12 & 35 & \\
+\end{tabular}
+\end{center}
+\vspace{0.2cm}
+\begin{itemize}
+  \item Player A chooses the row with largest row minimum: $\max \min = 12$.
+  \item Player B chooses the column with smallest column maximum: $\min \max = 12$.
+  \item Since they are equal, there is a saddle point.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Saddle Point Result}
+\begin{block}{Result}
+The saddle point is $(A1,B3)$, and the value of the game is $12$.
+\end{block}
+\vspace{0.2cm}
+\begin{itemize}
+  \item It is the minimum in Row A1.
+  \item It is the maximum in Column B3.
+  \item If A announces A1, B cannot reduce A below 12.
+  \item If B announces B3, A cannot increase above 12.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{When There Is No Saddle Point}
+\begin{center}
+\begin{tabular}{c c c c c}
+ & B1 & B2 & B3 & Row min\\
+\midrule
+A1 & 0 & -2 & 2 & -2\\
+A2 & 5 & 4 & -3 & -3\\
+A3 & 2 & 3 & -4 & -4\\
+\midrule
+Col max & 5 & 4 & 2 & \\
+\end{tabular}
+\end{center}
+\vspace{0.2cm}
+\begin{itemize}
+  \item $\max \min = -2$.
+  \item $\min \max = 2$.
+  \item They are not equal, so there is no pure-strategy saddle point.
+  \item This motivates mixed strategies, which can be covered next time.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Today's Checklist}
+\begin{enumerate}
+  \item Identify players, strategies, and payoffs.
+  \item Read the payoff matrix correctly.
+  \item Use best responses to check Nash equilibrium.
+  \item Remove dominated strategies when possible.
+  \item For zero-sum games, try the saddle point test before mixed strategies.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Mini Quiz}
+\begin{enumerate}
+  \item In a Nash equilibrium, can the outcome be inefficient?
+  \item In a zero-sum game, what does Player B want to do to Player A's payoff?
+  \item What equality must hold for a saddle point?
+  \item Why should we not compare the two payoffs inside the same cell?
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{Summary}
+\begin{itemize}
+  \item Game theory studies strategic decision making.
+  \item Nash equilibrium means no player wants to deviate alone.
+  \item Equilibrium can be stable but inefficient.
+  \item Dominated strategies help simplify payoff tables.
+  \item In zero-sum games, a saddle point gives a pure-strategy solution.
+\end{itemize}
+\vspace{0.3cm}
+\begin{block}{Next}
+Mixed strategies and graphical solution methods are natural next steps when no saddle point exists.
+\end{block}
+\end{frame}
+
+\end{document}
