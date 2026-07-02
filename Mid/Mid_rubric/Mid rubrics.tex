@@ -136,5 +136,109 @@
 \end{itemize}
 
 
+\question{4}{Mixed-Integer Linear Programming -- Production Planning \points{20}}
+
+\begin{itemize}
+    \item Correctly defines production, inventory, and setup decision variables,
+    including binary setup variables $y_t$ for each month. \points{4}
+
+    \item Correctly formulates the objective function with production costs, fixed
+    setup costs, and holding costs for Months 1--5. \points{4}
+
+    \item Correctly writes the monthly inventory balance constraints using zero initial
+    inventory and all monthly demands. \points{5}
+
+    \item Correctly imposes no ending inventory, $I_6=0$, and nonnegativity of production
+    and inventory variables. \points{3}
+
+    \item Correctly links production and setup decisions using capacity constraints
+    such as $0\leq x_t\leq 80y_t$ and states $y_t\in\{0,1\}$. \points{4}
+\end{itemize}
+
+
+\question{5}{Game Theory -- Dominance and Pure Strategy Equilibrium \points{20}}
+
+\begin{itemize}
+    \item Correctly recognizes that Player A maximizes the payoff and Player B minimizes
+    the payoff in the zero-sum game. \points{2}
+
+    \item Correctly eliminates dominated rows for Player A:
+    Rows $A3,A4,A5$ are eliminated. \points{5}
+
+    \item Correctly eliminates dominated columns for Player B:
+    Columns $B3,B4,B5$ are eliminated. \points{5}
+
+    \item Correctly obtains the reduced game
+    \[
+    \begin{array}{c|cc}
+     & B1 & B2\\
+    \hline
+    A1 & 4 & 1\\
+    A2 & 2 & 3
+    \end{array}
+    \]
+    \points{3}
+
+    \item Correctly checks the saddle point condition:
+    $\max\min=2$ and $\min\max=3$, so no pure strategy Nash equilibrium exists.
+    \points{3}
+
+    \item Correctly explains why each payoff in the reduced game is unstable by
+    identifying a profitable unilateral deviation by Player A or Player B. \points{2}
+\end{itemize}
+
+
+\question{6}{Integer Programming -- Logical Constraints \points{30}}
+
+\begin{itemize}
+    \item Correctly defines binary project selection variables $x_i\in\{0,1\}$ and
+    formulates the profit-maximization objective and budget constraint. \points{4}
+
+    \item Correctly formulates constraints (a)--(h):
+    \[
+    x_2+x_5\leq 1,\quad
+    \sum_{i=1}^{10}x_i=4,\quad
+    x_1+x_3+x_4\geq 1,
+    \]
+    \[
+    x_6\leq x_7,\quad
+    x_8\leq x_3+x_4,\quad
+    x_1=x_{10},
+    \]
+    \[
+    x_9\geq x_3+x_4-1,\quad
+    x_6+x_7+x_8\geq 2x_5.
+    \]
+    \points{14}
+
+    \item Correctly models condition (i), including an auxiliary binary variable and
+    valid linear constraints enforcing at least one of the two stated conditions.
+    One valid formulation is
+    \[
+    x_1+x_2+x_3+x_4\geq 2z_i,
+    \]
+    \[
+    x_5+x_6+x_7+x_8\leq 1+3z_i,\qquad z_i\in\{0,1\}.
+    \]
+    \points{5}
+
+    \item Correctly models condition (j), including an auxiliary binary variable and
+    valid linear constraints for the conditional disjunction. One valid formulation is
+    \[
+    x_2\geq x_{10}+z_j-1,\qquad
+    x_9\geq x_{10}+z_j-1,
+    \]
+    \[
+    x_3\leq 1-x_{10}+z_j,\qquad
+    x_4\leq 1-x_{10}+z_j,\qquad
+    z_j\in\{0,1\}.
+    \]
+    \points{5}
+
+    \item Uses clear notation and states all required binary restrictions for auxiliary
+    variables. \points{2}
+\end{itemize}
+
+
 
 \end{document}

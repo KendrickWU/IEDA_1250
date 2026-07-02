@@ -423,7 +423,248 @@ u_i^*+v_j^*\leq c_{ij}.
 Thus, only routes whose shipping cost is justified by the corresponding warehouse and clinic shadow prices are used in the optimal plan.
 }
 
+\vspace{1em}
+
+% =========================
+% Question 4
+% =========================
+
+\item \textbf{(20 points)} A manufacturer produces a single product over the next 6 months. The demand in each month is known and must be satisfied on time. Shortages are not allowed. The manufacturer may produce in a month only if it sets up the production line in that month. If the production line is set up in month $t$, where $t\in\{1,2,\ldots,6\}$, the firm pays a fixed setup cost. In addition, it pays a variable production cost for each unit produced and an inventory holding cost for each unit carried from one month to the next.
+
+The monthly data are shown below.
+\[
+\begin{array}{c|cccccc}
+\text{Month} & 1 & 2 & 3 & 4 & 5 & 6\\
+\hline
+\text{Demand} & 40 & 60 & 35 & 70 & 55 & 45\\
+\text{Production capacity} & 80 & 80 & 80 & 80 & 80 & 80\\
+\text{Variable production cost} & 12 & 11 & 13 & 10 & 12 & 14\\
+\text{Setup cost} & 300 & 300 & 300 & 300 & 300 & 300\\
+\text{Holding cost} & 2 & 2 & 2 & 2 & 2 & -
+\end{array}
+\]
+Assume that the initial inventory is zero and that the company wants no inventory left over at the end of Month 6. Formulate this problem as a mixed-integer linear program that minimizes the total production, setup, and inventory holding cost. Clearly define all decision variables.
+
+{\color{red}
+\textbf{Solution:}
+Let $x_t$ be the number of units produced in month $t$, $I_t$ be the inventory at the end of month $t$, and
+\[
+y_t=
+\begin{cases}
+1, & \text{if the production line is set up in month }t,\\
+0, & \text{otherwise,}
+\end{cases}
+\qquad t=1,\ldots,6.
+\]
+
+The mixed-integer linear program is
+\[
+\begin{aligned}
+\min \quad
+&12x_1+11x_2+13x_3+10x_4+12x_5+14x_6\\
+&+300(y_1+y_2+y_3+y_4+y_5+y_6)\\
+&+2(I_1+I_2+I_3+I_4+I_5)
+\end{aligned}
+\]
+subject to
+\[
+x_1=40+I_1,
+\]
+\[
+I_1+x_2=60+I_2,\qquad
+I_2+x_3=35+I_3,
+\]
+\[
+I_3+x_4=70+I_4,\qquad
+I_4+x_5=55+I_5,
+\]
+\[
+I_5+x_6=45+I_6,
+\]
+\[
+I_6=0,
+\]
+\[
+0\leq x_t\leq 80y_t,\qquad t=1,\ldots,6,
+\]
+\[
+I_t\geq 0,\qquad t=1,\ldots,6,
+\]
+and
+\[
+y_t\in\{0,1\},\qquad t=1,\ldots,6.
+\]
+The constraints $x_t\leq 80y_t$ ensure that production in month $t$ is possible only if the setup decision $y_t=1$.
+}
+
+\vspace{1em}
+
+% =========================
+% Question 5
+% =========================
+
+\item \textbf{(20 points)} Consider a two-player zero-sum game where Player A's payoffs are shown below. Player A chooses rows $(A1$ to $A5)$, and Player B chooses columns $(B1$ to $B5)$.
+\[
+\begin{array}{c|ccccc}
+\text{Player A}\backslash \text{Player B} & B1 & B2 & B3 & B4 & B5\\
+\hline
+A1 & 4 & 1 & 5 & 2 & 6\\
+A2 & 2 & 3 & 4 & 4 & 5\\
+A3 & 1 & 0 & 2 & 1 & 3\\
+A4 & 1 & 2 & 3 & 3 & 4\\
+A5 & 0 & 0 & 1 & 1 & 2
+\end{array}
+\]
+Answer the following questions:
+\begin{enumerate}
+    \item[(a)] Eliminate all dominated strategies for Player A and Player B.
+    \item[(b)] Does the reduced game have a pure strategy Nash equilibrium? If yes, find the equilibrium; if no, explain why every payoff in the reduced game is unstable.
+\end{enumerate}
+
+{\color{red}
+\textbf{Solution:}
+Since this is a zero-sum game, Player A maximizes the payoff and Player B minimizes Player A's payoff.
+
+\textbf{(a) Elimination of dominated strategies.}
+For Player A, Row $A3$ is dominated by Row $A1$, Row $A4$ is dominated by Row $A2$, and Row $A5$ is dominated by Row $A1$. Therefore, Rows $A3,A4,A5$ can be eliminated.
+
+For Player B, Column $B5$ is dominated by Column $B3$, Column $B3$ is dominated by Column $B2$, and Column $B4$ is dominated by Column $B2$. Therefore, Columns $B3,B4,B5$ can be eliminated.
+
+The reduced game is
+\[
+\begin{array}{c|cc}
+ & B1 & B2\\
+\hline
+A1 & 4 & 1\\
+A2 & 2 & 3
+\end{array}
+\]
+
+\textbf{(b) Pure strategy Nash equilibrium.}
+The row minima are
+\[
+\min(A1)=1,\qquad \min(A2)=2,
+\]
+so $\max\min=2$. The column maxima are
+\[
+\max(B1)=4,\qquad \max(B2)=3,
+\]
+so $\min\max=3$. Since
+\[
+\max\min=2\neq 3=\min\max,
+\]
+there is no pure strategy Nash equilibrium.
+
+Equivalently, every payoff in the reduced game is unstable:
+\begin{itemize}
+    \item At $(A1,B1)$, Player B can switch to $B2$ and reduce A's payoff from $4$ to $1$.
+    \item At $(A1,B2)$, Player A can switch to $A2$ and increase the payoff from $1$ to $3$.
+    \item At $(A2,B1)$, Player A can switch to $A1$ and increase the payoff from $2$ to $4$.
+    \item At $(A2,B2)$, Player B can switch to $B1$ and reduce A's payoff from $3$ to $2$.
+\end{itemize}
+Therefore, the reduced game has no pure strategy Nash equilibrium.
+}
+
+\vspace{1em}
+
+% =========================
+% Question 6
+% =========================
+
+\item \textbf{(30 points)} A firm has options to invest in 10 different projects. The total investment cannot exceed the available budget $q$. The profits and costs of these projects are given by $(p_1,p_2,\ldots,p_{10})$ and $(c_1,c_2,\ldots,c_{10})$, respectively. The firm wants to maximize its total profit. In addition to the budget constraint, the managers need to consider the following requirements:
+\begin{enumerate}
+    \item[(a)] Projects 2 and 5 cannot be chosen together.
+    \item[(b)] Exactly 4 projects are to be selected.
+    \item[(c)] At least one project must be selected from the project set $\{1,3,4\}$.
+    \item[(d)] If Project 6 is selected, then Project 7 must also be selected.
+    \item[(e)] If Project 8 is selected, then at least one of Projects 3 and 4 must also be selected.
+    \item[(f)] Either both Projects 1 and 10 are selected, or neither of them is selected.
+    \item[(g)] If both Projects 3 and 4 are selected, then Project 9 must also be selected.
+    \item[(h)] Project 5 cannot be selected unless at least two projects from the set $\{6,7,8\}$ are selected.
+    \item[(i)] At least one of the following two conditions must hold: at least two projects from the set $\{1,2,3,4\}$ are selected, or at most one project from the set $\{5,6,7,8\}$ is selected.
+    \item[(j)] If Project 10 is selected, then at least one of the following two conditions must hold:
+    \begin{itemize}
+        \item Both Projects 2 and 9 are selected.
+        \item Neither Project 3 nor Project 4 is selected.
+    \end{itemize}
+\end{enumerate}
+Define integer decision variables and formulate logical constraints for (a)--(j).
+
+{\color{red}
+\textbf{Solution:}
+Let
+\[
+x_i=
+\begin{cases}
+1, & \text{if Project }i\text{ is selected,}\\
+0, & \text{otherwise,}
+\end{cases}
+\qquad i=1,\ldots,10.
+\]
+The objective is
+\[
+\max \quad \sum_{i=1}^{10}p_ix_i.
+\]
+The budget constraint is
+\[
+\sum_{i=1}^{10}c_ix_i\leq q,
+\]
+with
+\[
+x_i\in\{0,1\},\qquad i=1,\ldots,10.
+\]
+
+The logical constraints are
+\[
+x_2+x_5\leq 1,
+\]
+\[
+\sum_{i=1}^{10}x_i=4,
+\]
+\[
+x_1+x_3+x_4\geq 1,
+\]
+\[
+x_6\leq x_7,
+\]
+\[
+x_8\leq x_3+x_4,
+\]
+\[
+x_1=x_{10},
+\]
+\[
+x_9\geq x_3+x_4-1,
+\]
+\[
+x_6+x_7+x_8\geq 2x_5.
+\]
+
+For part (i), introduce a binary variable $z_i\in\{0,1\}$ and impose
+\[
+x_1+x_2+x_3+x_4\geq 2z_i,
+\]
+\[
+x_5+x_6+x_7+x_8\leq 1+3z_i.
+\]
+If $z_i=1$, the first condition is enforced. If $z_i=0$, the second condition is enforced.
+
+For part (j), introduce a binary variable $z_j\in\{0,1\}$ and impose
+\[
+x_2\geq x_{10}+z_j-1,
+\]
+\[
+x_9\geq x_{10}+z_j-1,
+\]
+\[
+x_3\leq 1-x_{10}+z_j,
+\]
+\[
+x_4\leq 1-x_{10}+z_j.
+\]
+If $x_{10}=1$ and $z_j=1$, then $x_2=x_9=1$. If $x_{10}=1$ and $z_j=0$, then $x_3=x_4=0$. If $x_{10}=0$, these constraints impose no additional restriction.
+}
+
 \end{enumerate}
 
 \end{document}
-

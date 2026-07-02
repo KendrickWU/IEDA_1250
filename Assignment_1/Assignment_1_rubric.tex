@@ -1,0 +1,323 @@
+\documentclass[11pt, letterpaper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{array}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.8em}
+\renewcommand{\labelitemi}{\textbullet}
+\renewcommand{\labelitemii}{$\circ$}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+}
+
+\newcommand{\question}[2]{
+    \subsection*{Question #1: #2}
+}
+\newcommand{\points}[1]{
+    \textbf{(#1 Points)}
+}
+
+\begin{document}
+
+\begin{center}
+    {\Huge \textbf{Assignment 1 Grading Rubric}} \\
+    \vspace{0.2cm}
+    {\large IEDA 1250: Optimization for Decision Making (Summer, 2026)} \\
+    \vspace{0.5cm}
+    \hrule
+\end{center}
+
+\question{1}{Linear Programming -- Graphical Solutions \points{10}}
+
+\begin{itemize}
+    \item Correctly analyzes LP (a), including the graphical feasible region or
+    equivalent reasoning, and concludes that the LP is unbounded. \points{2.5}
+
+    \item Correctly analyzes LP (b), including the graphical feasible region or
+    equivalent reasoning, and concludes that the LP is unbounded. \points{2.5}
+
+    \item Correctly analyzes LP (c), identifies a unique optimal solution
+    \[
+    x_1^*=1,\qquad x_2^*=0,
+    \]
+    and reports the corresponding objective value. \points{2.5}
+
+    \item Correctly analyzes LP (d), identifies infinitely many optimal solutions on
+    \[
+    x_1+3x_2=3
+    \]
+    between
+    \[
+    \left(\frac{3}{2},\frac{1}{2}\right)
+    \quad \text{and} \quad
+    (3,0),
+    \]
+    and reports the corresponding objective value. \points{2.5}
+\end{itemize}
+
+
+\question{2}{Duality -- Transforming a General LP to Standard Form \points{10}}
+
+\begin{itemize}
+    \item Correctly substitutes
+    \[
+    x_1=-\bar{x}_1,\qquad x_2=\bar{x}_2-\underline{x}_2,
+    \]
+    with all new variables nonnegative, and rewrites the objective and constraints
+    in the new variables. \points{2}
+
+    \item Correctly replaces the equality constraint with one ``$\leq$'' constraint
+    and one ``$\geq$'' constraint. \points{2}
+
+    \item Correctly converts all ``$\geq$'' inequalities to ``$\leq$'' inequalities
+    so that the primal is in a form with only ``$\leq$'' constraints and
+    nonnegative variables. \points{2}
+
+    \item Correctly writes the dual of the transformed LP, including the correct
+    objective, constraints, and nonnegativity restrictions on the dual variables.
+    \points{2}
+
+    \item Correctly simplifies the dual LP to the equivalent compact form with one
+    free dual variable and one nonnegative dual variable. \points{2}
+\end{itemize}
+
+
+\question{3}{Complementary Slackness \points{10}}
+
+\begin{itemize}
+    \item Correctly writes or uses the dual LP:
+    \[
+    \max \quad 4y_1+3y_2
+    \]
+    with the five dual constraints corresponding to $x_1,\ldots,x_5$ and
+    $y_1,y_2\geq 0$. \points{2}
+
+    \item Correctly evaluates the dual constraints at
+    \[
+    y_1^*=0.8,\qquad y_2^*=0.6,
+    \]
+    and identifies which dual constraints are tight and which have slack. \points{2}
+
+    \item Correctly applies complementary slackness to conclude
+    \[
+    x_2^*=x_3^*=x_4^*=0.
+    \]
+    \points{2}
+
+    \item Correctly uses $y_1^*>0$ and $y_2^*>0$ to make both primal constraints
+    tight and solves
+    \[
+    x_1+3x_5=4,\qquad 2x_1+x_5=3.
+    \]
+    \points{2}
+
+    \item Correctly reports the optimal primal solution and objective value:
+    \[
+    x_1^*=1,\quad x_2^*=0,\quad x_3^*=0,\quad x_4^*=0,\quad x_5^*=1,
+    \qquad z^*=5.
+    \]
+    \points{2}
+\end{itemize}
+
+
+\question{4}{Linear Programming Model and Excel Solution -- PaGas Water Operation \points{10}}
+
+\begin{itemize}
+    \item Correctly defines and uses the five decision variables
+    $X_{AF},X_{BF},X_{AR},X_{BR},X_F$. \points{1}
+
+    \item Correctly formulates the total cost objective:
+    \[
+    \min \quad 200X_{AF}+100X_{AR}+180X_{BF}+120X_{BR}+70X_F.
+    \]
+    \points{2}
+
+    \item Correctly includes the water balance constraints at Plant A, Plant B, and
+    the fracking site:
+    \[
+    X_{AF}+X_{AR}=20,\quad
+    X_{BF}+X_{BR}=25,\quad
+    X_{AF}+X_{BF}+X_F=50.
+    \]
+    \points{3}
+
+    \item Correctly imposes nonnegativity on all decision variables. \points{1}
+
+    \item Provides a valid Excel Solver setup or screenshot showing the model and
+    optimal solution. \points{1}
+
+    \item Correctly reports the optimal solution:
+    \[
+    X_{AF}^*=0,\quad X_{AR}^*=20,\quad X_{BF}^*=25,\quad
+    X_{BR}^*=0,\quad X_F^*=25.
+    \]
+    \points{2}
+\end{itemize}
+
+
+\question{5}{Binary Integer Programming -- Crew Assignment \points{20}}
+
+\begin{itemize}
+    \item Correctly defines twelve binary variables
+    \[
+    x_i=
+    \begin{cases}
+    1, & \text{if sequence }i\text{ is selected,}\\
+    0, & \text{otherwise,}
+    \end{cases}
+    \qquad i=1,\ldots,12.
+    \]
+    \points{2}
+
+    \item Correctly formulates the cost-minimization objective:
+    \[
+    \min \; 2x_1+3x_2+4x_3+6x_4+7x_5+5x_6
+    +7x_7+8x_8+9x_9+9x_{10}+8x_{11}+9x_{12}.
+    \]
+    \points{3}
+
+    \item Correctly writes coverage constraints requiring each flight to be covered
+    by at least one selected sequence. Award partial credit for each correctly
+    modeled flight coverage constraint. \points{7}
+
+    \item Correctly imposes the exactly-three-crews constraint:
+    \[
+    \sum_{i=1}^{12}x_i=3.
+    \]
+    \points{2}
+
+    \item Correctly states the binary restrictions $x_i\in\{0,1\}$ for all
+    $i=1,\ldots,12$. \points{2}
+
+    \item Provides a valid Excel Solver setup or screenshot showing the integer
+    programming model and optimal solution. \points{2}
+
+    \item Correctly reports one optimal solution and its total cost. Valid optimal
+    solutions include
+    \[
+    x_3=x_4=x_{11}=1
+    \]
+    or
+    \[
+    x_1=x_5=x_{12}=1,
+    \]
+    with all other variables equal to 0 and total cost $18{,}000$. \points{2}
+\end{itemize}
+
+
+\question{6}{Mixed Integer Reformulation of Logical Constraints \points{10}}
+
+\begin{itemize}
+    \item Correctly introduces binary variables to indicate whether each logical
+    inequality is enforced. \points{2}
+
+    \item Correctly reformulates part (a), ``at least one of two inequalities
+    holds,'' using a valid big-$M$ formulation, for example:
+    \[
+    3x_1+x_2+x_3+x_4 \leq 12+M(1-y_1),
+    \]
+    \[
+    x_1+x_2+x_3+x_4 \leq 15+M(1-y_2),
+    \]
+    \[
+    y_1+y_2\geq 1,\qquad y_1,y_2\in\{0,1\}.
+    \]
+    \points{4}
+
+    \item Correctly reformulates part (b), ``at least two of three inequalities
+    hold,'' using a valid big-$M$ formulation, for example:
+    \[
+    2x_1+5x_2+x_3+x_4 \leq 30+M(1-y_1),
+    \]
+    \[
+    x_1+3x_2+5x_3+x_4 \leq 40+M(1-y_2),
+    \]
+    \[
+    3x_1+x_2+3x_3+x_4 \leq 60+M(1-y_3),
+    \]
+    \[
+    y_1+y_2+y_3\geq 2,\qquad y_1,y_2,y_3\in\{0,1\}.
+    \]
+    \points{4}
+\end{itemize}
+
+
+\question{7}{Mixed Binary Integer Programming -- Product Mix \points{20}}
+
+\begin{itemize}
+    \item Correctly defines continuous production variables $x_i\geq 0$ and binary
+    setup variables $y_i\in\{0,1\}$ for products $i=1,\ldots,4$. \points{3}
+
+    \item Correctly formulates the profit-maximization objective including marginal
+    revenues and start-up costs:
+    \[
+    \max \; 70x_1+60x_2+90x_3+80x_4
+    -50000y_1-40000y_2-70000y_3-60000y_4.
+    \]
+    \points{3}
+
+    \item Correctly imposes the start-up linking constraints
+    \[
+    0\leq x_i\leq My_i,\qquad i=1,\ldots,4.
+    \]
+    \points{3}
+
+    \item Correctly models that no more than two products can be produced:
+    \[
+    y_1+y_2+y_3+y_4\leq 2.
+    \]
+    \points{2}
+
+    \item Correctly models that Product 3 or Product 4 can be produced only if
+    Product 1 or Product 2 is produced:
+    \[
+    y_3\leq y_1+y_2,\qquad y_4\leq y_1+y_2.
+    \]
+    \points{3}
+
+    \item Correctly models that exactly one of the two resource constraints holds
+    using a valid big-$M$ formulation and an auxiliary binary variable. \points{3}
+
+    \item Provides a valid Excel Solver setup or screenshot and reports the optimal
+    solution
+    \[
+    x_2^*=2000,\qquad y_2^*=1,
+    \]
+    with all other production and setup variables equal to 0, and maximum total
+    profit $80{,}000$. \points{3}
+\end{itemize}
+
+
+\question{8}{Expected Value of a Discrete Random Variable \points{10}}
+
+\begin{itemize}
+    \item Correctly computes
+    \[
+    E[X]=0(0.2)+1(0.5)+2(0.3)=1.1.
+    \]
+    \points{4}
+
+    \item Correctly computes
+    \[
+    E[X^2]=0^2(0.2)+1^2(0.5)+2^2(0.3)=1.7.
+    \]
+    \points{2}
+
+    \item Correctly uses linearity of expectation:
+    \[
+    E[2X^2+3]=2E[X^2]+3=6.4.
+    \]
+    \points{4}
+\end{itemize}
+
+\end{document}
