@@ -1,0 +1,263 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs,array,longtable,tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\definecolor{hkustblue}{RGB}{0,83,155}
+\definecolor{lightblue}{RGB}{232,242,250}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.45em}
+\setlength{\headheight}{14pt}
+\setlist[itemize]{leftmargin=1.6em,itemsep=0.2em,topsep=0.2em}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{HKUST IEDA 1250}
+\fancyhead[R]{Summer 2026 Final Exam Rubric}
+\fancyfoot[C]{\thepage}
+
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\rubricsection}[2]{%
+  \section*{\color{hkustblue}Question #1 \normalfont\normalsize (#2 points)}
+}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE\bfseries IEDA 1250, Summer 2026}\par
+  \vspace{0.2em}
+  {\Large Final Exam Marking Rubric}\par
+  \vspace{0.4em}
+  {\normalsize Total: 120 points}
+\end{center}
+
+\section*{General marking guidance}
+
+\begin{itemize}
+  \item Award full credit for any mathematically equivalent method with correct
+  reasoning, even when notation differs from the official solution.
+  \item Accept exact fractions or sufficiently accurate decimals.  Minor rounding
+  differences should not be penalized.
+  \item Apply follow-through credit: after one arithmetic error, grade later steps
+  using the student's resulting value when the method remains correct.  Do not
+  penalize the same error twice.
+  \item Unsupported final answers receive only the points explicitly assigned to the
+  final result; requested graphical or dynamic-programming work must be shown.
+  \item For Questions 6 and 7, use the formula printed in the Summer 2026 paper,
+  whose first denominator is $\lambda(\lambda+\mu_1)$.
+  \item For Question 7, accept any valid stable numerical instance that proves the
+  claimed strict comparison; the official instance is only one example.
+\end{itemize}
+
+\section*{Answer-key summary}
+
+\begin{longtable}{L{0.10\textwidth}L{0.81\textwidth}}
+\toprule
+Question & Key result \\
+\midrule
+1 & Player 1: $(3/8,5/8)$; Player 2: $(1/2,1/2)$; game value to Player 1: $1/2$.\\
+2 & $p^*=(0,1/3,2/3,0,0,0)$, $q^*=(1/2,1/2,0,0,0,0)$, $v=6$; the two stated LPs are primal and dual.\\
+3 & Study-day allocation $(2,1,3,1)$; maximum grade points $23$.\\
+4 & Location sequence $(A,B,C,B,B)$; maximum net profit $37$.\\
+5 & $\pi=(16,8,4,2,1)/31$, utilization $15/31$, loss $1/31$, $\E[N]=26/31$, $\lambda_e=60/31$, $\E[T]=13/30$; capacity wins in (g), speed wins in (h).\\
+6 & $\E[N]=1/[A(1-\rho)^2]$.\\
+7 & One valid instance: $(\lambda,\mu_1,\mu_2)=(5,1,10)$, giving $\E[N]_{2}=1331/978>1=\E[N]_{\text{fast only}}$.\\
+\bottomrule
+\end{longtable}
+
+\rubricsection{1}{20}
+
+\begin{longtable}{L{0.12\textwidth}L{0.72\textwidth}C{0.08\textwidth}}
+\toprule
+Item & Expected work & Points \\
+\midrule
+1(a) & Defines $x=\Pr(\text{Player 1 uses }S_1)$ and obtains both lines
+$L_1(x)=4x-1$ and $L_2(x)=2-4x$. & 3\\
+1(a) & Correct graphical interpretation: Player 1 maximizes the lower envelope of
+the two payoff lines. & 3\\
+1(a) & Finds the intersection $x=3/8$, value $v=1/2$, and reports Player 1's
+strategy $(3/8,5/8)$. & 3\\
+1(a) & Makes Player 1 indifferent and obtains Player 2's strategy
+$(1/2,1/2)$. & 3\\
+1(b) & Constructs Player 2's correctly oriented payoff table
+$\bigl(\begin{smallmatrix}-3&1\\2&-2\end{smallmatrix}\bigr)$. & 3\\
+1(b) & Obtains $H_1(q)=2-5q$, $H_2(q)=3q-2$ and shows the graphical intersection
+at $(q,v_2)=(1/2,-1/2)$. & 3\\
+1(b) & Recovers $x=3/8$ and explicitly checks the sign relationship
+$v_2=-v_1=-1/2$. & 2\\
+\midrule
+& \textbf{Question 1 total} & \textbf{20}\\
+\bottomrule
+\end{longtable}
+
+\textit{Graphing note:} If the student gives correct algebra but no graph or envelope
+interpretation, withhold up to 3 points across the graphical-work rows.
+
+\rubricsection{2}{20}
+
+\begin{longtable}{L{0.12\textwidth}L{0.72\textwidth}C{0.08\textwidth}}
+\toprule
+Item & Expected work & Points \\
+\midrule
+2(a) & Correctly removes dominated strategies: $A_5$ by $A_2$, $A_6$ by $A_3$;
+$B_3,B_4$ by $B_1$ and $B_5,B_6$ by $B_2$. & 2\\
+2(a) & Forms the reduced $4\times2$ game and obtains $q_1=q_2=1/2$ and $v=6$
+from the relevant $A_2$--$A_3$ intersection. & 2\\
+2(a) & Makes $B_1$ and $B_2$ indifferent and obtains
+$p_2=1/3$, $p_3=2/3$. & 2\\
+2(a) & Reports the full six-component strategies and checks that unused rows and
+columns cannot improve either player's payoff. & 2\\
+2(b) & Defines $p_i$ and $v_A$ and gives the objective $\max v_A$. & 1\\
+2(b) & Writes all six full-table payoff constraints in the correct direction.  Award
+$0.5$ per correct constraint, up to 3. & 3\\
+2(b) & Includes $\sum_i p_i=1$, $p_i\ge0$, and $v_A$ unrestricted. & 1\\
+2(c) & Rewrites the payoff constraints as
+$v_A-\sum_i a_{ij}p_i\le0$ and assigns nonnegative dual variables $q_j$. & 2\\
+2(c) & Introduces unrestricted $v_B$ for the primal equality and derives the dual
+objective $\min v_B$. & 2\\
+2(c) & Derives $\sum_j a_{ij}q_j\le v_B$ for all six rows and
+$\sum_jq_j=1$ from the free variable $v_A$. & 2\\
+2(c) & States that the resulting LP, including signs, is identical to the given
+Player B LP. & 1\\
+\midrule
+& \textbf{Question 2 total} & \textbf{20}\\
+\bottomrule
+\end{longtable}
+
+\rubricsection{3}{20}
+
+\begin{longtable}{L{0.12\textwidth}L{0.72\textwidth}C{0.08\textwidth}}
+\toprule
+Item & Expected work & Points \\
+\midrule
+Setup & Defines a valid backward-DP value such as $G_i(s)$ and respects the
+``at least one day per remaining course'' feasibility condition. & 2\\
+Course 4 & Correct terminal-stage values $G_4(1,2,3,4)=(6,7,9,9)$. & 3\\
+Course 3 & Shows the four maximizations and obtains
+$G_3(2,3,4,5)=(8,10,13,14)$. & 5\\
+Course 2 & Shows the four maximizations and obtains
+$G_2(3,4,5,6)=(13,15,18,19)$. & 5\\
+Course 1 & Evaluates
+$G_1(7)=\max\{22,23,21,20\}=23$. & 3\\
+Backtrack & Correctly backtracks to $(x_1,x_2,x_3,x_4)=(2,1,3,1)$ and verifies
+$5+5+7+6=23$. & 2\\
+\midrule
+& \textbf{Question 3 total} & \textbf{20}\\
+\bottomrule
+\end{longtable}
+
+\rubricsection{4}{20}
+
+\begin{longtable}{L{0.12\textwidth}L{0.72\textwidth}C{0.08\textwidth}}
+\toprule
+Item & Expected work & Points \\
+\midrule
+Setup & Correctly interprets $(L,r)$, subtracts travel cost on a change, updates
+$r$, and excludes choosing $L$ when $r=2$. & 2\\
+Day 5 & Correct terminal continuation and Day 5 values:
+$V_5(A,1)=7$, $V_5(A,2)=7$, $V_5(B,1)=10$, $V_5(B,2)=6$,
+$V_5(C,1)=8$, $V_5(C,2)=8$, with valid best actions. & 3\\
+Day 4 & Correct values $(16,14,13,13,15,15)$ for states
+$(A,1),(A,2),(B,1),(B,2),(C,1),(C,2)$ and valid best actions. & 4\\
+Day 3 & Correct values $(21,21,23,23,25,19)$ in the same state order and valid
+best actions. & 4\\
+Day 2 & Correct values $(29,29,32,30,30,30)$ in the same state order and valid
+best actions. & 3\\
+Day 1 and backtrack & Evaluates initial choices as $(37,34,32)$, selects $A$, and
+backtracks to the unique optimal sequence $(A,B,C,B,B)$. & 2\\
+Final value & Correctly shows daily net contributions $(8,6,8,5,10)$ and total
+net profit $37$. & 2\\
+\midrule
+& \textbf{Question 4 total} & \textbf{20}\\
+\bottomrule
+\end{longtable}
+
+\textit{Tie note:} At off-path states, accept either valid tied action, including
+$B$ or $C$ at $V_5(C,1)$, $A$ or $B$ at $V_4(B,1)$, and $A$ or $C$ at
+$V_3(A,1)$.
+
+\rubricsection{5}{20}
+
+\begin{longtable}{L{0.12\textwidth}L{0.72\textwidth}C{0.08\textwidth}}
+\toprule
+Item & Expected work & Points \\
+\midrule
+5(a) & Draws states $0,1,2,3,4$ with rightward rate $\lambda$ through state 4 and
+leftward rate $\mu$ through state 0; recognizes arrivals at 4 are rejected. & 2\\
+5(b) & Uses local/global balance to obtain $\pi_{n+1}=\rho\pi_n$ with
+$\rho=1/2$. & 2\\
+5(b) & Normalizes and reports
+$(\pi_0,\ldots,\pi_4)=(16,8,4,2,1)/31$. & 2\\
+5(c) & Utilization $1-\pi_0=15/31$. & 1\\
+5(d) & States PASTA and obtains the loss fraction $\pi_4=1/31$.  One point for
+PASTA/explanation and one for the value. & 2\\
+5(e) & Computes $\E[N]=\sum n\pi_n=26/31$. & 2\\
+5(f) & Computes the effective arrival rate
+$\lambda_e=\lambda(1-\pi_4)=60/31$. & 1\\
+5(f) & Applies Little's Law to admitted jobs and obtains
+$\E[T]=(26/31)/(60/31)=13/30$. & 2\\
+5(g) & Correct loss probabilities $1/511$ after capacity doubling and $1/341$
+after speed doubling; concludes capacity doubling is better. & 2\\
+5(h) & Correct loss probabilities $6561/242461$ after capacity doubling and
+$81/6505$ after speed doubling; concludes speed doubling is better. & 2\\
+5(i) & Explains that added space is especially effective at light load, whereas at
+heavier load service capacity addresses the congestion bottleneck directly. & 2\\
+\midrule
+& \textbf{Question 5 total} & \textbf{20}\\
+\bottomrule
+\end{longtable}
+
+\rubricsection{6}{10}
+
+\begin{longtable}{L{0.12\textwidth}L{0.72\textwidth}C{0.08\textwidth}}
+\toprule
+Item & Expected work & Points \\
+\midrule
+Law & States and correctly applies Little's Law $\E[N]=\lambda\E[T]$. & 3\\
+Substitution & Substitutes the provided $\E[T]$ and cancels $\lambda$. & 2\\
+Result & Obtains $\E[N]=1/[A(1-\rho)^2]$. & 3\\
+Definitions & Retains the printed definitions of $A$ and
+$\rho=\lambda/(\mu_1+\mu_2)<1$ without swapping $\mu_1$ and $\mu_2$. & 2\\
+\midrule
+& \textbf{Question 6 total} & \textbf{10}\\
+\bottomrule
+\end{longtable}
+
+\rubricsection{7}{10}
+
+\begin{longtable}{L{0.12\textwidth}L{0.72\textwidth}C{0.08\textwidth}}
+\toprule
+Item & Expected work & Points \\
+\midrule
+Instance & Gives parameters with $\mu_2>\mu_1$, $\lambda<\mu_1+\mu_2$, and
+$\lambda<\mu_2$.  Official example: $(5,1,10)$. & 2\\
+Two servers & Correctly computes $\rho$, $A$, and two-server $\E[N]$.  For the
+official example: $\rho=5/11$, $A=163/66$, $\E[N]=1331/978$. & 3\\
+Fast only & Uses the $M/M/1$ formula $\E[N]=\lambda/(\mu_2-\lambda)$.  The
+official example gives $1$. & 2\\
+Comparison & Shows a strict improvement after disconnection; for the official
+example, $1<1331/978$. & 1\\
+Intuition & Explains how fast-server-first routing can send a job to a very slow
+server even when waiting briefly for the fast server would be better, while the fast
+server alone still has sufficient spare capacity. & 2\\
+\midrule
+& \textbf{Question 7 total} & \textbf{10}\\
+\bottomrule
+\end{longtable}
+
+\section*{Point-total check}
+
+\[
+20+20+20+20+20+10+10=\boxed{120}.
+\]
+
+\end{document}
