@@ -1,0 +1,145 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.55in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\pagestyle{empty}
+
+\definecolor{hkustblue}{RGB}{0,56,116}
+\definecolor{lightblue}{RGB}{235,244,255}
+\definecolor{lightgray}{RGB}{248,248,248}
+
+\newtcolorbox{keybox}{
+  colback=lightblue,
+  colframe=hkustblue,
+  boxrule=0.8pt,
+  arc=2pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+}
+
+\begin{document}
+
+\begin{center}
+{\Large \bfseries HW2 Q3: Capacity Allocation after Poisson Splitting}\\[0.2cm]
+{\normalsize IEDA 1250 Queueing Theory}
+\end{center}
+
+\vspace{0.1cm}
+
+\textbf{Can we treat the system as two independent M/M/1 queues?}
+
+Yes. By Poisson splitting, the two arrival streams are Poisson with rates
+\[
+\lambda_1=p\lambda,\qquad \lambda_2=(1-p)\lambda.
+\]
+So we can model the two branches as two M/M/1 queues, but the overall mean response
+time must be weighted by the routing probabilities:
+\[
+E[T]
+=
+p\frac{1}{\mu_1-p\lambda}
++
+(1-p)\frac{1}{\mu_2-(1-p)\lambda},
+\qquad
+\mu_1+\mu_2=\mu.
+\]
+
+\begin{keybox}
+\textbf{Stability conditions}
+\[
+\mu_1>p\lambda,\qquad
+\mu_2>(1-p)\lambda.
+\]
+These are the minimum capacities needed just to keep both queues stable.
+\end{keybox}
+
+\textbf{Easy case: \(p=\frac{1}{2}\).}
+
+By symmetry, split capacity equally:
+\[
+\boxed{\mu_1^*=\mu_2^*=\frac{\mu}{2}.}
+\]
+Each queue has arrival rate \(\lambda/2\), so
+\[
+E[T_1]=E[T_2]
+=\frac{1}{\mu/2-\lambda/2}
+=\frac{2}{\mu-\lambda}.
+\]
+Thus
+\[
+\boxed{E[T]=\frac{2}{\mu-\lambda}.}
+\]
+
+\textbf{General case: \(p>\frac{1}{2}\).}
+
+First allocate the minimum stable capacities:
+\[
+p\lambda \quad \text{to server 1},\qquad
+(1-p)\lambda \quad \text{to server 2}.
+\]
+The remaining extra capacity is
+\[
+\mu-\lambda.
+\]
+Define the extra capacities
+\[
+x_1=\mu_1-p\lambda,\qquad
+x_2=\mu_2-(1-p)\lambda.
+\]
+Then
+\[
+x_1+x_2=\mu-\lambda,
+\qquad
+E[T]=\frac{p}{x_1}+\frac{1-p}{x_2}.
+\]
+Minimizing this gives
+\[
+\frac{x_1}{x_2}
+=
+\frac{\sqrt{p}}{\sqrt{1-p}}.
+\]
+
+\begin{keybox}
+\textbf{Optimal fraction of extra capacity going to server 1}
+\[
+\boxed{
+\frac{x_1}{x_1+x_2}
+=
+\frac{\sqrt{p}}{\sqrt{p}+\sqrt{1-p}}
+}
+\]
+\end{keybox}
+
+Therefore, the optimal capacity allocation is
+\[
+\boxed{
+\mu_1^*
+=
+p\lambda
++
+(\mu-\lambda)
+\frac{\sqrt{p}}{\sqrt{p}+\sqrt{1-p}}
+}
+\]
+\[
+\boxed{
+\mu_2^*
+=
+(1-p)\lambda
++
+(\mu-\lambda)
+\frac{\sqrt{1-p}}{\sqrt{p}+\sqrt{1-p}}
+}
+\]
+
+\vspace{0.1cm}
+\textbf{Intuition:} each server first receives enough capacity to handle its own arrival
+rate. The remaining capacity should be split in proportion to
+\(\sqrt{p}\) and \(\sqrt{1-p}\), not directly in proportion to \(p\) and \(1-p\).
+
+\end{document}
